@@ -2,6 +2,7 @@
   "name": "marketing",
   "version": "1.0.0",
   "author": "David De La Rosa",
+  "license": "ISC",
   "scripts": {
     "dev": "webpack serve --config config/webpack.dev.js"
   },

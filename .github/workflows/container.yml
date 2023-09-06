@@ -2,7 +2,10 @@ name: container-deployment
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - "main"
+    paths:
+      - "container/**"
 
 jobs:
   build:
@@ -13,6 +16,11 @@ jobs:
       - run: "npm install"
       - run: "npm run build"
 
+  publish:
+    name: publish_container
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
       - uses: shinyinc/action-aws-cli@v1.2
       - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
         env:
